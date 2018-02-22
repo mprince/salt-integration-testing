@@ -7,13 +7,15 @@ resources_attempt_limit: 20
 initial_cluster_size: 2
 
 # aws profile
-profile_name: 'default'
+profile_name: 'sit'
 
 # Docker container configs
-container_memory: 1024
-container_cpu: 1024
-container_image: 'dandb/salt_review:2015-8-7'
+container_memory: 4096
+container_memory_reservation: 1536
+container_cpu: 512
+container_image: 'dandb/salt_review:2015-8-3-external-redis'
 
 # Logfile configs
 save_logs: True
 highstate_log_dir: highstate_logs
+redis_host: 'redis-jenkins.devops.local'

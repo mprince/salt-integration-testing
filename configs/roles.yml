@@ -1,15 +1,108 @@
-# sample role configurations. 
-# Each key is a server role you wish to test. 
-# Each role should contain a priority and an array of subroles (salt states) you wish to apply
-# Generated YML structure should look similar to the example below
-
-
-#php:
-#  priority: 1
-#  subroles:
-#    - server
-#lb:
-#  priority: 2
-#  subroles:
-#  - lb
-#  - server
+slave:
+  priority: 1
+  subroles:
+    - server
+    - ci.slave
+jenkins-master:
+  priority: 2
+  subroles:
+    - server
+    - ci.master
+phoenix:
+  priority: 3
+  subroles:
+    - server
+    - appsrv.phoenix
+telesales:
+  priority: 4
+  subroles:
+    - server
+    - appsrv.telesales
+php:
+  priority: 5
+  subroles:
+    - server
+    - appsrv.helios
+    - appsrv.cms
+    - appsrv.owl
+    - appsrv.verified
+    - appsrv.whitelabel
+sftp:
+  priority: 6
+  subroles:
+    - server
+    - sftp-server
+util:
+  priority: 7
+  subroles:
+    - server
+    - appsrv.phoenix-utils
+lb:
+  priority: 8
+  subroles:
+    - lb
+    - server
+queue:
+  priority: 9
+  subroles:
+    - server
+    - queue
+es:
+  priority: 10
+  subroles:
+    - server
+    - elasticsearch.verified
+rsyslog:
+  priority: 11
+  subroles:
+    - server
+    - rsyslog
+frontend:
+  priority: 12
+  subroles:
+    - server
+    - frontend
+dnbi:
+  priority: 13
+  subroles:
+    - server
+    - dnbi-microservices
+nfs:
+  priority: 14
+  subroles:
+    - server
+cos:
+  priority: 15
+  subroles:
+    - server
+    - cos-microservices
+cart:
+  priority: 16
+  subroles:
+    - server
+    - appsrv.cart
+dashboard:
+  priority: 17
+  subroles:
+    - server
+    - appsrv.dashboard
+owl:
+  priority: 18
+  subroles:
+    - server
+    - appsrv.owl
+cupdate:
+  priority: 19
+  subroles:
+    - server
+    - cupdate-microservices
+nexus:
+  priority: 20
+  subroles:
+    - server
+    - maven-repo
+saltmaster:
+  priority: 21
+  subroles:
+    - server
+    - saltmaster

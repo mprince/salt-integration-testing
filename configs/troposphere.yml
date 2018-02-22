@@ -9,33 +9,27 @@ template_description: 'SIT (Salt Integration Testing) CloudFormation Template'
 
 ## launch configuration configs
 launch_configuration_name: 'sitLaunchConfiguration'
-instance_type: 'c3.4xlarge'
-# array of security group IDs. Example is shown
-security_groups:
-#  - 'sg-78shdjs'
+instance_type: c5.2xlarge
+security_groups: ['sg-44dac528']
+
+key_name: KA_MBP
+
+# AMI ID of amazon-ecs-optimized
+ami_id: ami-00898660
+ami_url: 'https://aws.amazon.com/marketplace/search/results/ref=dtl_navgno_search_box?page=1&searchTerms=Amazon+ECS-Optimized+Amazon+Linux+AMI'
 
 # If you are using an amazon-ecs-optimized ami older than 2015.09c use '/dev/xvda' below
 # http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
 ebs_device_name: '/dev/xvdcz'
-ebs_volume_size: 60
+ebs_volume_size: 200
 
-key_name:
-# AMI ID of amazon-ecs-optimized e.g. 'ami-33679c77'
-ami_id:
-ami_url: 'https://aws.amazon.com/marketplace/search/results/ref=dtl_navgno_search_box?page=1&searchTerms=Amazon+ECS-Optimized+Amazon+Linux+AMI'
-
+subnet: subnet-6b0e4602
 
 ## Autoscaling Group configs
 autoscaling_group_name: 'sitAutoScalingGroup'
-# subnet id e.g. 'subnet-6s0e4s02'
-subnet:
 max_size: 20
 min_size: 0
 
-#ECS Agent Configs
-ecs_task_cleanup_wait_duration: '20m'
-
-## Cloudwatch Alarm Configs
 autoscale_down_alarms:
   cpualarm:
     scaling_metric: 'CPUReservation'
@@ -54,6 +48,8 @@ autoscale_up_alarms:
     scale_up_threshold: '80'
     statistic: Average
     period: 60
+
+ecs_task_cleanup_wait_duration: '3h'
 
 ## General configs
 tag_key: 'Name'
